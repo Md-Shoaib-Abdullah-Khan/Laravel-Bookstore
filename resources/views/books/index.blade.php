@@ -13,6 +13,7 @@
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-default">Search</button>
+            
 
                     </div>
                 </div>
@@ -38,6 +39,13 @@
                 <td>{{$book->author }}</td>
                 <td>{{$book->price }}</td>
                 <td><a href="{{ route('books.show', $book->id )  }}">View</a></td>
+                <td><a href="{{ route('books.edit', $book->id )  }}">Edit</a></td>
+                <td><form method="post" action="{{route('books.destroy')}}" onsubmit="return confirm('Sure?')">
+                @csrf
+                <input type="hidden" name="id" value="{{$book->id}}">
+                <input class="btn btn-link text-danger" type="submit" value="Delete">
+                </form>
+</td>
                 
             </tr>
         @endforeach
